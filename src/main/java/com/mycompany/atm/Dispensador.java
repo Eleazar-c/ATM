@@ -10,14 +10,14 @@ package com.mycompany.atm;
  */
 public class Dispensador {
     
-    private int efectivoDisponible = 10000;
+    private static int efectivoDisponible ;
 
     public int getEfectivoDisponible() {
         return efectivoDisponible;
     }
 
     public void setEfectivoDisponible(int efectivoDisponible) {
-        this.efectivoDisponible = efectivoDisponible;
+        Dispensador.efectivoDisponible = efectivoDisponible;
     }
     
 

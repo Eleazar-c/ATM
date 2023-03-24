@@ -74,8 +74,13 @@ public class ATMCLASS {
         //Separador
         pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
 
-        /*Empieza el proceso de la accion del ATM*/
+                    /*Empieza el proceso de la accion del ATM*/
+        
+        //Inicializamos el saldo de la cuenta
         cuentaObj.setSaldo((float) 50000.35);
+        
+        //inicializamos el saldo del ATM
+        dispensadorobj.setEfectivoDisponible(1000);
         
         do {
             pantallaObj.mostrarMenu();
@@ -110,12 +115,15 @@ public class ATMCLASS {
                 if (montoDepositar != 0){
                     this.depositar(montoDepositar);                   
                 }else{
+                    pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
                     pantallaObj.mostrarMensajeSaltoLinea("Transaccion cancelada.");
                     pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
                     pantallaObj.mostrarMensajeSaltoLinea("");
                 }
             case 4:
+                pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
                 pantallaObj.mostrarMensajeSaltoLinea("Que tenga un buen dia!");
+                pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
                 break;
             default:
                 pantallaObj.mostrarMensajeSaltoLinea("NOTA: Debe selecionar una opcion que aparesca en la pantalla");
@@ -126,7 +134,7 @@ public class ATMCLASS {
     public void depositar(int monto) {
        
         int confirmacion =0;
-        float montoDepositar = monto / 100;
+        float montoDepositar = Float.valueOf(monto) / 100;
         
             if (montoDepositar < 0){
                 pantallaObj.mostrarMensajeSaltoLinea("  ERROR: El monto a depositar no puede ser menor a cero. Transaccion cancelada.");
@@ -134,6 +142,7 @@ public class ATMCLASS {
                 pantallaObj.mostrarMensajeSaltoLinea("");
             }else{
                 pantallaObj.mostrarMensajeSaltoLinea("Favor introduccior el sobre en la ranura de deposito, tiempo estimado de respuesta 2 minutos.");
+                pantallaObj.mostrarMensajeSaltoLinea(String.format("Saldo a depositar: %s (Si el monto a depositar es el correcto )", new DecimalFormat(",###.00").format(montoDepositar)));
                 pantallaObj.mostrarMensajeSaltoLinea("  1.Cuando introdusca el sobre favor de digitar el numero 1");
                 pantallaObj.mostrarMensajeSaltoLinea("  2.Si desea cancelar digite cualquier numero.");
                 pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
@@ -262,6 +271,7 @@ public class ATMCLASS {
         //Despues descuenta el efectivo del ATM
         dispensadorobj.setEfectivoDisponible((int) (saldoAtm-monto));
         //mostramos el mensaje para que el cliente retire su efectivo
+        pantallaObj.mostrarMensajeSaltoLinea(String.format("El nuevo saldo de la cuenta es: %s", new DecimalFormat(",###.00").format(cuentaObj.getSaldo())));
         pantallaObj.mostrarMensajeSaltoLinea("Dinero disponible en el dispensador, favor de tomarlo.");
         pantallaObj.mostrarMensajeSaltoLinea("---------------------------------------------------------------------------------------------");
         pantallaObj.mostrarMensajeSaltoLinea("");
