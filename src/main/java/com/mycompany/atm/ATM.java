@@ -12,7 +12,13 @@ public class ATM {
 
     public static void main(String[] args) {
         
-        ATMCLASS atmObj = new ATMCLASS();
+        //ATMCLASS atmObj = new ATMCLASS();
+        
+        BaseDeDatos bd = new BaseDeDatos();
+        //bd.escribir();
+        //bd.leer();
+        //bd.agregarDatos();
+        bd.eliminar();
         /*
         ATM atm = new ATM();
         Cuenta cuenta = new Cuenta("Miguel");
